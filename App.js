@@ -26,8 +26,10 @@ const App = () => {
 
   const playWordAudio = useCallback(() => {
     if (audioRef.current && currentWordData) {
-      audioRef.current.src = currentWordData.audio;
-      audioRef.current.play().catch(e => console.log("Autoplay blocked or audio missing", e));
+      // Automatically map word to audio path in the /audio folder
+      const audioPath = `audio/${currentWordData.word.toLowerCase()}.mp3`;
+      audioRef.current.src = audioPath;
+      audioRef.current.play().catch(e => console.log("Audio file missing at: " + audioPath, e));
     }
   }, [currentWordData]);
 

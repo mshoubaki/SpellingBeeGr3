@@ -2,29 +2,28 @@
 # Kitty Speller - Configuration Guide
 
 ## Folder Structure
-To add your own 100 words and audio files, follow this structure in your public/static folder:
+All audio files must be placed in a folder named `audio` in the root directory.
 
 ```
 /
   index.html
+  index.js
   audio/
-    word_001.mp3
-    word_002.mp3
-    ... (total 100 files)
+    applaud.mp3
+    myth.mp3
+    ...
 ```
 
 ## How to update words
-1. Open `constants.ts`.
+1. Open `constants.js`.
 2. Find the `WORD_LIST` array.
-3. Add your word objects: `{ word: "EXAMPLE", audio: "audio/word_filename.mp3" }`.
-4. Ensure the `word` property is in uppercase for best matching or let the code handle normalization.
+3. Add just the word: `{ word: "EXAMPLE" }`.
+4. The app will automatically look for `audio/example.mp3`.
 
 ## How to run
-- Since this is a React app, it's best run with a tool like Vite.
-- If running as a standalone folder, ensure you serve it with a local static server (e.g., `npx serve .`) to avoid CORS issues with audio files.
+- **Local Development**: Use a static server like VS Code's "Live Server" or run `npx serve .` to avoid CORS errors.
+- **GitHub Pages**: Upload all files, including the `audio/` folder. The app uses Babel to handle JSX directly in the browser.
 
 ## Assumptions Made
-1. **Audio format**: The game expects standard web-supported formats like .mp3 or .wav.
-2. **Special Characters**: Words with spaces or hyphens (like "HOT DOG") are supported; the spaces/hyphens are automatically filled in the answer slots and are not part of the clickable letter pool.
-3. **Audio Autoplay**: Most mobile browsers block autoplay. The game includes a "Start" button that acts as the required user gesture to unlock audio context.
-4. **Extra Letters**: The algorithm always picks 5 letters that are NOT in the current word. If the alphabet is exhausted (not likely with English words), it would need more complex logic.
+1. **Audio format**: The game expects `.mp3` files. Filenames should be lowercase and match the word (e.g., "TSUNAMI" -> `tsunami.mp3`).
+2. **Audio Autoplay**: The "Start" button handles the user interaction required by browsers to allow audio playback.
