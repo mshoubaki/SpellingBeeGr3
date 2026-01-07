@@ -1,0 +1,7 @@
+
+export const GameState = {
+  START: 'START',
+  PLAYING: 'PLAYING',
+  CELEBRATING: 'CELEBRATING',
+  SUMMARY: 'SUMMARY'
+};
